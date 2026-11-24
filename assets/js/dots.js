@@ -19,7 +19,7 @@
   if (reduce.matches) return;                    // reduced motion: the photograph is the hero
 
   const BUDGET = POINT_BUDGET();
-  function POINT_BUDGET() { return matchMedia('(max-width: 700px)').matches ? 34000 : 64000; }
+  function POINT_BUDGET() { return matchMedia('(max-width: 700px)').matches ? 90000 : 170000; }
   const MOBILE = matchMedia('(max-width: 700px)').matches;
   let STEP = 2;      // set from the budget once the card size is known, so the grid
                      // is even everywhere: a fixed step plus culling is what made
@@ -62,7 +62,8 @@
       // Sample the photograph exactly as CSS displays it: `background: center/cover`
       // crops rather than stretches. Drawing it into W x H directly squashed the
       // face to the card's aspect — that was the "distorted image" report.
-      STEP = Math.max(2, Math.ceil(Math.sqrt((W * H) / BUDGET)));
+      STEP = Math.max(1, Math.ceil(Math.sqrt((W * H) / BUDGET)));   // a floor of 2
+      // silently capped the density no matter how the budget was raised
       const sw = Math.max(1, Math.round(W / STEP)), sh = Math.max(1, Math.round(H / STEP));
       const iw = image.naturalWidth || image.width, ih = image.naturalHeight || image.height;
       const scale = Math.max(sw / iw, sh / ih);              // cover
@@ -166,7 +167,7 @@
       const px = px3 + (p.x - px3) * m;
       const py = py3 + (p.y - py3) * m;
 
-      const size = (p.big ? 2.7 : 2.2) * (0.95 + 0.12 * s) * (1 - 0.12 * m);
+      const size = (p.big ? 1.9 : 1.55) * (0.95 + 0.12 * s) * (1 - 0.12 * m);
       ctx.fillStyle = p.r;
       ctx.globalAlpha = Math.min(1, p.a * (0.85 + 0.2 * s));
       ctx.fillRect(px, py, size, size);
