@@ -95,7 +95,7 @@
           // density has no visible cliff where the mask ends
           let keep = 1;
           if (lum < 0.24 && edge < 0.26) {
-            keep = 0.22;
+            keep = 0.14;
             if (lum < 0.16) continue;      // deep background: not worth a point
           }
           out.push({
@@ -166,7 +166,7 @@
       const px = px3 + (p.x - px3) * m;
       const py = py3 + (p.y - py3) * m;
 
-      const size = (p.big ? 2.0 : 1.65) * (0.95 + 0.12 * s) * (1 - 0.12 * m);
+      const size = (p.big ? 2.7 : 2.2) * (0.95 + 0.12 * s) * (1 - 0.12 * m);
       ctx.fillStyle = p.r;
       ctx.globalAlpha = Math.min(1, p.a * (0.85 + 0.2 * s));
       ctx.fillRect(px, py, size, size);
