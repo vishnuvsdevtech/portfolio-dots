@@ -116,6 +116,9 @@
       // keep the point budget: prefer the brighter (more defining) points
 
       pts = out;
+      document.documentElement.dataset.pts = String(pts.length);
+      document.documentElement.dataset.step = String(STEP);
+      document.documentElement.dataset.builds = String((+document.documentElement.dataset.builds || 0) + 1);
       t0 = performance.now();
       draw(performance.now());
     };
